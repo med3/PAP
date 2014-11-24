@@ -7,19 +7,19 @@ public class Client {
 	{
 		
 	}
-    public void init(String serverHostname, int port) throws IOException {
+    public ClientConnection init(String serverHostname, int port) throws IOException {
 
         
         System.out.println ("Attemping to connect to host " +
                 serverHostname + " on port " + port);
 
-        ClientConnection clientConnection = new ClientConnection();
+        ClientConnection ClientConnection = new ClientConnection();
 
         try {
-        	clientConnection.socket = new Socket(serverHostname, port);
-        	clientConnection.out = new PrintWriter(clientConnection.socket.getOutputStream(), true);
-        	clientConnection.in = new BufferedReader(new InputStreamReader(
-        			clientConnection.socket.getInputStream()));
+        	ClientConnection.socket = new Socket(serverHostname, port);
+        	ClientConnection.out = new PrintWriter(ClientConnection.socket.getOutputStream(), true);
+        	ClientConnection.in = new BufferedReader(new InputStreamReader(
+        			ClientConnection.socket.getInputStream()));
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + serverHostname);
             System.exit(1);
@@ -29,25 +29,8 @@ public class Client {
             System.exit(1);
         }
 
-	BufferedReader stdIn = new BufferedReader(
-                                   new InputStreamReader(System.in));
-	String userInput;
-
-        System.out.println ("Type Message (\"Bye.\" to quit)");
-	while ((userInput = stdIn.readLine()) != null) 
-           {
-		clientConnection.out.println(userInput);
-
-            // end loop
-            if (userInput.equals("Bye."))
-                break;
-
-	    System.out.println("echo: " + clientConnection.in.readLine());
-	   }
-
-	clientConnection.out.close();
-	clientConnection.in.close();
-	stdIn.close();
-	clientConnection.socket.close();
+        return ClientConnection;
+	
+	
     }
 }

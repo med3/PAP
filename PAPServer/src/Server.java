@@ -5,12 +5,12 @@ public class Server extends Thread
 { 
  protected Socket clientSocket;
 
- public static void main(String[] args) throws IOException 
+ public void init(int port) throws IOException 
    { 
     ServerSocket serverSocket = null; 
 
     try { 
-         serverSocket = new ServerSocket(10008); 
+         serverSocket = new ServerSocket(port); 
          System.out.println ("Connection Socket Created");
          try { 
               while (true)
@@ -27,7 +27,7 @@ public class Server extends Thread
         } 
     catch (IOException e) 
         { 
-         System.err.println("Could not listen on port: 10008."); 
+         System.err.println("Could not listen on port: " + port); 
          System.exit(1); 
         } 
     finally
@@ -37,12 +37,17 @@ public class Server extends Thread
              }
          catch (IOException e)
              { 
-              System.err.println("Could not close port: 10008."); 
+              System.err.println("Could not close port: " + port); 
               System.exit(1); 
              } 
         }
    }
 
+ public Server() throws IOException 
+ {
+	 
+ }
+ 
  private Server (Socket clientSoc)
    {
     clientSocket = clientSoc;

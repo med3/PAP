@@ -2,21 +2,23 @@ import java.io.*;
 import java.net.*;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
+	
+	public Client() throws IOException
+	{
+		
+	}
+    public void init(String serverHostname, int port) throws IOException {
 
-        String serverHostname = new String ("127.0.0.1");
-
-        if (args.length > 0)
-           serverHostname = args[0];
+        
         System.out.println ("Attemping to connect to host " +
-                serverHostname + " on port 10008.");
+                serverHostname + " on port " + port);
 
         Socket echoSocket = null;
         PrintWriter out = null;
         BufferedReader in = null;
 
         try {
-            echoSocket = new Socket(serverHostname, 10008);
+            echoSocket = new Socket(serverHostname, port);
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(
                                         echoSocket.getInputStream()));

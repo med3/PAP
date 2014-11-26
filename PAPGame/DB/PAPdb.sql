@@ -19,14 +19,14 @@ drop table if exists Question;
 drop table if exists User;
 
 CREATE TABLE User(
-	user_id integer PRIMARY KEY,
+	user_id integer PRIMARY KEY AUTO_INCREMENT,
 	user_mail varchar(255) NOT NULL,
 	user_password varchar(255) NOT NULL,
 	UNIQUE (user_mail)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Question(
-	question_id integer PRIMARY KEY,
+	question_id integer PRIMARY KEY AUTO_INCREMENT,
 	question_value varchar(255) NOT NULL,
 	question_theme varchar(255) NOT NULL,
 	question_proposition1 varchar(255) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE Question(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Game(
-	game_id integer PRIMARY KEY,
+	game_id integer PRIMARY KEY AUTO_INCREMENT,
 	user1_id integer NOT NULL,
 	user2_id integer NOT NULL,
 	FOREIGN KEY (user1_id) REFERENCES User(user_id),

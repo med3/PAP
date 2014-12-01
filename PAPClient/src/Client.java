@@ -7,19 +7,19 @@ public class Client {
 	{
 		
 	}
-    public ClientConnection init(String serverHostname, int port) throws IOException {
+    public Connection init(String serverHostname, int port) throws IOException {
 
         
         System.out.println ("Attemping to connect to host " +
                 serverHostname + " on port " + port);
 
-        ClientConnection ClientConnection = new ClientConnection();
+        Connection connection = new Connection();
 
         try {
-        	ClientConnection.socket = new Socket(serverHostname, port);
-        	ClientConnection.out = new PrintWriter(ClientConnection.socket.getOutputStream(), true);
-        	ClientConnection.in = new BufferedReader(new InputStreamReader(
-        			ClientConnection.socket.getInputStream()));
+        	connection.socket = new Socket(serverHostname, port);
+        	connection.out = new PrintWriter(connection.socket.getOutputStream(), true);
+        	connection.in = new BufferedReader(new InputStreamReader(
+        			connection.socket.getInputStream()));
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + serverHostname);
             System.exit(1);
@@ -29,7 +29,7 @@ public class Client {
             System.exit(1);
         }
 
-        return ClientConnection;
+        return connection;
 	
 	
     }

@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
-public class ClientConnection {
+public class Connection {
 	public Socket socket = null;
     public PrintWriter out = null;
     public BufferedReader in = null;

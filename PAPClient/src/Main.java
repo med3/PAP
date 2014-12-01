@@ -8,7 +8,7 @@ public class Main {
 		String serverName = "127.0.0.1";
 		int port = 10008;
 		Client client = new Client();
-		ClientConnection clientConnection = client.init(serverName, port);
+		Connection connection = client.init(serverName, port);
 		
 		BufferedReader stdIn = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -17,15 +17,15 @@ public class Main {
 		System.out.println ("Type Message (\"Bye.\" to quit)");
 		while ((userInput = stdIn.readLine()) != null) 
 		{
-			clientConnection.out.println(userInput);
+			connection.out.println(userInput);
 
 			// end loop
 			if (userInput.equals("Bye."))
 				break;
 			
-			System.out.println("echo: " + clientConnection.in.readLine());
+			System.out.println("echo: " + connection.in.readLine());
 		}
-		clientConnection.close();
+		connection.close();
 
 		stdIn.close();
 	}

@@ -1,12 +1,12 @@
 
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class Connection extends Thread{
 	public Socket socket = null;
-    
+    public SocketAddress socketAddress= null;
 
 	public PrintWriter out = null;
     public BufferedReader in = null;

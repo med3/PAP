@@ -33,7 +33,7 @@ public class UserDAO {
 
 		Connection conn;
 		PreparedStatement ps;
-		try {
+		/*try {
 			conn = DBConnect.getConnection();
 			ps = conn.prepareStatement(query);
 			ps.setString(1, user.getMail());
@@ -44,6 +44,7 @@ public class UserDAO {
 		} catch (DAOException | SQLException e) {
 			throw new DAOException("ERROR : Insert user impossible", e);
 		}
+		*/
 	}
 
 	public static User get(User user) throws DAOException {
@@ -54,7 +55,7 @@ public class UserDAO {
 		Connection conn;
 		PreparedStatement ps;
 		ResultSet rs;
-		try {
+		/*try {
 			conn = DBConnect.getConnection();
 			ps = conn.prepareStatement(query);
 			ps.setString(1, user.getMail());
@@ -67,6 +68,6 @@ public class UserDAO {
 			}
 		} catch (DAOException | SQLException e) {
 			throw new DAOException("ERROR : Get user impossible", e);
-		}
+		}*/return new User(21, "");
 	}
 }

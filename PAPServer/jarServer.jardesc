@@ -13,6 +13,7 @@
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=PAPServer/src"/>
         <file path="/PAPServer/.classpath"/>
+        <javaElement handleIdentifier="=Common/src"/>
         <file path="/PAPServer/.project"/>
     </selectedElements>
 </jardesc>

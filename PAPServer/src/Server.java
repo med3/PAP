@@ -1,23 +1,40 @@
 import java.net.*; 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.*; 
 
 public class Server extends Thread
 { 
  protected Socket clientSocket;
+ List<Connection> listOfConnections;
 
+ public Server(){
+	 listOfConnections = new ArrayList<Connection>();
+ }
+ 
+ public void sendMessage(String message) {
+	 for (Connection c : listOfConnections) {
+			c.out.println(message);
+		}
+ }
  public void init(int port) throws IOException 
    { 
     ServerSocket serverSocket = null; 
 
     try { 
          serverSocket = new ServerSocket(port); 
-         System.out.println ("Connection Socket Created");
-         try { 
-              while (true)
+         System.out.println ("Server Socket Created");
+         try {
+        	 int i = 0;
+              while (i<2)
                  {
+            	  i++;
                   System.out.println ("Waiting for Connection");
-                  new Server (serverSocket.accept()); 
-                 }
+                  Connection connection = new Connection();
+                  connection.socket = serverSocket.accept();
+                  connection.start();
+                  listOfConnections.add(connection);
+                  }
              } 
          catch (IOException e) 
              { 
@@ -42,47 +59,4 @@ public class Server extends Thread
              } 
         }
    }
-
- public Server() throws IOException 
- {
-	 
- }
- 
- private Server (Socket clientSoc)
-   {
-    clientSocket = clientSoc;
-    start();
-   }
-
- public void run()
-   {
-    System.out.println ("New Communication Thread Started");
-
-    try { 
-         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), 
-                                      true); 
-         BufferedReader in = new BufferedReader( 
-                 new InputStreamReader( clientSocket.getInputStream())); 
-
-         String inputLine; 
-
-         while ((inputLine = in.readLine()) != null) 
-             { 
-              System.out.println ("Server: " + inputLine); 
-              out.println(inputLine); 
-
-              if (inputLine.equals("Bye.")) 
-                  break; 
-             } 
-
-         out.close(); 
-         in.close(); 
-         clientSocket.close(); 
-        } 
-    catch (IOException e) 
-        { 
-         System.err.println("Problem with Communication Server");
-         System.exit(1); 
-        } 
-    }
 } 

@@ -12,7 +12,10 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <file path="/PAPClient/.classpath"/>
+        <file path="/Common/.project"/>
+        <file path="/Common/.classpath"/>
+        <javaElement handleIdentifier="=Common/src"/>
         <file path="/PAPClient/.project"/>
-        <javaElement handleIdentifier="=PAPClient/src"/>
+        <javaElement handleIdentifier="=PAPClient/src&lt;"/>
     </selectedElements>
 </jardesc>

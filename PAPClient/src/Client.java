@@ -3,23 +3,25 @@ import java.net.*;
 
 public class Client {
 	
-	public Client() throws IOException
+	public Connection connection;
+	
+	public Client()
 	{
-		
+		System.out.println("Constructor Client");
+		connection = new Connection();
 	}
-    public Connection init(String serverHostname, int port) throws IOException {
+	public void sendMessage(String message) {
+		connection.sendMessage(message);
+	}
+    public void init(String serverHostname, int port) throws IOException {
 
         
         System.out.println ("Attemping to connect to host " +
                 serverHostname + " on port " + port);
 
-        Connection connection = new Connection();
-
         try {
         	connection.socket = new Socket(serverHostname, port);
-        	connection.out = new PrintWriter(connection.socket.getOutputStream(), true);
-        	connection.in = new BufferedReader(new InputStreamReader(
-        			connection.socket.getInputStream()));
+        	connection.start(); //starts the thread to receive messages
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + serverHostname);
             System.exit(1);
@@ -27,10 +29,7 @@ public class Client {
             System.err.println("Couldn't get I/O for "
                                + "the connection to: " + serverHostname);
             System.exit(1);
-        }
-
-        return connection;
-	
+        }	
 	
     }
 }

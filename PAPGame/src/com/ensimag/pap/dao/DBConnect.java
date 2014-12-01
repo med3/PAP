@@ -25,7 +25,7 @@ public final class DBConnect {
 	private final static String DB_PASSWORD = "db.password";
 
 	private DBConnect() throws DAOException {
-		try {
+		/*try {
 			String url = PropertiesUtil.getProperty(DB_URL);
 			String dbName = PropertiesUtil.getProperty(DB_NAME);
 			String driver = PropertiesUtil.getProperty(DB_DRIVER);
@@ -40,6 +40,7 @@ public final class DBConnect {
 				| ClassNotFoundException | SQLException | IOException e) {
 			throw new DAOException("ERROR: DB Initialisation", e);
 		}
+		*/
 	}
 
 	/**

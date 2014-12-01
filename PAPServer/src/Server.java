@@ -17,6 +17,23 @@ public class Server extends Thread
 			c.out.println(message);
 		}
  }
+ public String receiveMessageAsynchrone() {
+	 for (Connection c : listOfConnections) {
+		String message = c.receiveMessageAsynchrone();
+			if( message!=null)
+				return message;
+	 }
+	 return null;
+ }
+ public String receiveMessageSynchrone() { //Does not work
+	 for (Connection c : listOfConnections) {
+			String message = c.receiveMessageSynchrone();
+				if( message!=null)
+					return message;
+	 }
+	return null;
+ }
+ 
  public void init(int port) throws IOException 
    { 
     ServerSocket serverSocket = null; 

@@ -1,6 +1,8 @@
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class Connection extends Thread{
 	public Socket socket = null;
@@ -8,18 +10,30 @@ public class Connection extends Thread{
 
 	public PrintWriter out = null;
     public BufferedReader in = null;
-    /*public BlockingQueue<String> messageQueue;
-      }
+    public BlockingQueue<String> messageQueue;
+    
     public Connection(){
-    	messageQueue = new BlockingQueue<String>()
-            
-          
+    	messageQueue = new ArrayBlockingQueue<String>(1024);
     }
-    */
+    
     
     public void sendMessage(String message) {
     	out.println(message);
     }
+    
+    public String receiveMessageAsynchrone() {
+			return messageQueue.poll(); //returns null if empty
+    }
+    public String receiveMessageSynchrone() {
+		try {
+			return messageQueue.take(); //waits until new message is received
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+}
+    
     
     public void run()
     {
@@ -37,7 +51,7 @@ public class Connection extends Thread{
          while ((inputLine = in.readLine()) != null) 
     	 { 	
         	 System.out.println ("Received: " + inputLine); 
-          
+        	 messageQueue.put(inputLine);
           }
 
           out.close(); 
@@ -48,7 +62,10 @@ public class Connection extends Thread{
          { 
           System.err.println("Problem with Communication Server");
           System.exit(1); 
-         } 
+         } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
  
      }
     

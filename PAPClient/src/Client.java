@@ -13,6 +13,15 @@ public class Client {
 	public void sendMessage(String message) {
 		connection.sendMessage(message);
 	}
+	
+	public String receiveMessageSynchrone() {
+		return connection.receiveMessageSynchrone();
+	}
+	
+	public String receiveMessageAsynchrone() {
+		return connection.receiveMessageAsynchrone();
+	}
+	
     public void init(String serverHostname, int port) throws IOException {
 
         

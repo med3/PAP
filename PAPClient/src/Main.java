@@ -8,9 +8,13 @@ public class Main {
 		Client client = new Client();
 		client.init(serverName, port);
 		while (true){
-			System.out.print("Enter something:");
+			System.out.print("\nEnter something:");
 			String input = System.console().readLine();
-			client.sendMessage(input);
+			if(input.equals("read")) {
+				System.out.print(client.receiveMessageAsynchrone());
+			} else {
+				client.sendMessage(input);
+			}
 		}
 	}
 }

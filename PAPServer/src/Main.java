@@ -6,9 +6,13 @@ public class Main {
 		Server server = new Server();
 		server.init(port);
 		while (true){
-			System.out.print("Enter something:");
+			System.out.print("\nEnter something:");
 			String input = System.console().readLine();
-			server.sendMessage(input);
+			if(input.equals("read")) {
+				System.out.println(server.receiveMessageAsynchrone());
+			} else {
+				server.sendMessage(input);
+			}
 		}
 	}
 }

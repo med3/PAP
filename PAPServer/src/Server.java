@@ -17,7 +17,7 @@ public class Server extends Thread
  }
  
  public void sendMessage(String message, SocketAddress address) {
-	 connectionsHashMap.get(address).out.println(message);
+	 connectionsHashMap.get(address).sendMessage(message);
  }
  
  public void sendMessage(String message) {

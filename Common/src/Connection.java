@@ -8,9 +8,9 @@ public class Connection extends Thread{
 	public Socket socket = null;
     public SocketAddress socketAddress= null;
 
-	public PrintWriter out = null;
-    public BufferedReader in = null;
-    public BlockingQueue<String> messageQueue;
+	private PrintWriter out = null;
+    private BufferedReader in = null;
+    private BlockingQueue<String> messageQueue;
     
     public Connection(){
     	messageQueue = new ArrayBlockingQueue<String>(1024);
